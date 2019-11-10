@@ -20,14 +20,6 @@ public class User {
         this.uLastName = uLastName;
     }
 
-    public User(long rId, String uEmail, String uPassword, String uFirstName, String uLastName) {
-        this.rId = rId;
-        this.uEmail = uEmail;
-        this.uPassword = uPassword;
-        this.uFirstName = uFirstName;
-        this.uLastName = uLastName;
-    }
-
     public User(SignUpRequestBody signUpRequestBody){
         this.uEmail = signUpRequestBody.getuEmail();
         this.uPassword = signUpRequestBody.getuPassword();
@@ -40,6 +32,14 @@ public class User {
         this.uPassword = editInfoRequestBody.getuNewPassword();
         this.uFirstName = editInfoRequestBody.getuFirstName();
         this.uLastName = editInfoRequestBody.getuLastName();
+    }
+
+    public User(long rId, String uEmail, String uPassword, String uFirstName, String uLastName) {
+        this.rId = rId;
+        this.uEmail = uEmail;
+        this.uPassword = uPassword;
+        this.uFirstName = uFirstName;
+        this.uLastName = uLastName;
     }
 
     public long getrId() {

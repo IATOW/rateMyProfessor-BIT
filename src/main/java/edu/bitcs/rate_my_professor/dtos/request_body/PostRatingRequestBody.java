@@ -4,21 +4,21 @@ import java.util.ArrayList;
 
 public class PostRatingRequestBody {
     private String rCourse;
-    private float rQuality;
-    private float rDifficulty;
+    private String rProfessor;
+    private double rQuality;
+    private double rDifficulty;
     private boolean rTakeAgain;
     private boolean rAttendance;
     private String rGradeReceived;
-    private ArrayList<Integer> rTags;
+    private ArrayList<String> rTags;
     private String rComment;
 
     public PostRatingRequestBody() {
     }
 
-    public PostRatingRequestBody(String rCourse, float rQuality, float rDifficulty, boolean rTakeAgain,
-                                 boolean rAttendance, String rGradeReceived, ArrayList<Integer> rTags,
-                                 String rComment) {
+    public PostRatingRequestBody(String rCourse, String rProfessor, double rQuality, double rDifficulty, boolean rTakeAgain, boolean rAttendance, String rGradeReceived, ArrayList<String> rTags, String rComment) {
         this.rCourse = rCourse;
+        this.rProfessor = rProfessor;
         this.rQuality = rQuality;
         this.rDifficulty = rDifficulty;
         this.rTakeAgain = rTakeAgain;
@@ -36,19 +36,27 @@ public class PostRatingRequestBody {
         this.rCourse = rCourse;
     }
 
-    public float getrQuality() {
+    public String getrProfessor() {
+        return rProfessor;
+    }
+
+    public void setrProfessor(String rProfessor) {
+        this.rProfessor = rProfessor;
+    }
+
+    public double getrQuality() {
         return rQuality;
     }
 
-    public void setrQuality(float rQuality) {
+    public void setrQuality(double rQuality) {
         this.rQuality = rQuality;
     }
 
-    public float getrDifficulty() {
+    public double getrDifficulty() {
         return rDifficulty;
     }
 
-    public void setrDifficulty(float rDifficulty) {
+    public void setrDifficulty(double rDifficulty) {
         this.rDifficulty = rDifficulty;
     }
 
@@ -76,11 +84,11 @@ public class PostRatingRequestBody {
         this.rGradeReceived = rGradeReceived;
     }
 
-    public ArrayList<Integer> getrTags() {
+    public ArrayList<String> getrTags() {
         return rTags;
     }
 
-    public void setrTags(ArrayList<Integer> rTags) {
+    public void setrTags(ArrayList<String> rTags) {
         this.rTags = rTags;
     }
 

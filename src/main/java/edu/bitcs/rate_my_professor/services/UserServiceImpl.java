@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @Service
 public class UserServiceImpl implements UserService{
-    private final static String LOG_IN_REQUEST_BODY = "logInRequestBody";
+    public final static String LOG_IN_REQUEST_BODY = "logInRequestBody";
 
     @Autowired
     private UserDao userDao;
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseBody deleteAccount(DeleteAccountRequestBody deleteAccountRequestBody, HttpSession httpSession) {
+    public ResponseBody deleteAccount(DeleteAccountRequestBody deleteAccountRequestBody,HttpSession httpSession) {
         ResponseBody responseBody;
 
         if(httpSession==null||httpSession.getAttribute(LOG_IN_REQUEST_BODY)==null){
@@ -137,4 +137,5 @@ public class UserServiceImpl implements UserService{
 
         return responseBody;
     }
+
 }

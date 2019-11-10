@@ -9,7 +9,7 @@ public class RateMyProfessorApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RateMyProfessorApplication.class, args);
-        System.out.println(IdHelper.getStringIdFromId(1));
     }
+
 
 }

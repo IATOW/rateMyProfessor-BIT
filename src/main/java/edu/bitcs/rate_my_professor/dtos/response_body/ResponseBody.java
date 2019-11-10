@@ -15,6 +15,14 @@ public class ResponseBody {
     public static final int UPDATE_USER_ERROR = 2003;
     public static final int DELETE_USER_ERROR = 2004;
 
+    public static final int GET_PROFESSOR_ERROR= 3000;
+
+    public static final int GET_COURSE_ERROR = 4000;
+
+    public static final int GET_RATING_ERROR = 5000;
+    public static final int CREATE_RATING_ERROR = 5001;
+    public static final int UPDATE_RATING_ERROR = 5002;
+
     private int code;
     private String msg;
     private Object data;

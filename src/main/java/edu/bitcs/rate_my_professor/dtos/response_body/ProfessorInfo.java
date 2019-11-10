@@ -149,7 +149,6 @@ public class ProfessorInfo {
         links.add(new Link("pRatings","/ratings?pId="+pId+"&offset="+0+"&limit="+0));
 
         this.links = links;
-
     }
 
     public ProfessorInfo(Object professorInfo, ArrayList<Link> links) {

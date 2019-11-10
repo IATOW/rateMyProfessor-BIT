@@ -6,8 +6,15 @@ public class IdHelper {
     private IdHelper() {
     }
 
-    public static long getIdFromStringId(String id){
-        return hashids.decode(id)[0];
+    public static Long getIdFromStringId(String id){
+        long [] ids = hashids.decode(id);
+
+        if(ids==null||ids.length==0){
+            return null;
+        }else{
+            return ids[0];
+        }
+
     }
 
     public static String getStringIdFromId(long id){

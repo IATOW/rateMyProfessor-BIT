@@ -10,7 +10,7 @@ public interface RatingService {
     ResponseBody getRatingInfoByrId(String rId);
     ResponseBody getRatingInfoBypId(String pId,String offset,String limit);
     ResponseBody getRatingInfoByuEmail(HttpSession httpSession, String offset, String limit);
-    ResponseBody postRating(PostRatingRequestBody postRatingRequestBody);
+    ResponseBody postRating(HttpSession httpSession,PostRatingRequestBody postRatingRequestBody);
     ResponseBody likeOrDislikeRatingByrId(LikeOrDislikeRatingByrIdRequestBody likeOrDislikeRatingByrIdRequestBody,
                                           String rId);
 }

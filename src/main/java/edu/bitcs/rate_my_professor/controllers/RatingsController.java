@@ -22,7 +22,8 @@ public class RatingsController {
     }
 
     @GetMapping("")
-    public ResponseBody getRatingInfoBypIdOrByuEmail(HttpServletRequest httpServletRequest,@RequestParam("pId")String pId,
+    public ResponseBody getRatingInfoBypIdOrByuEmail(HttpServletRequest httpServletRequest,
+                                                     @RequestParam("pId")String pId,
                                                   @RequestParam("offset") String offset,
                                                   @RequestParam("limit") String limit){
         if(pId==null){
@@ -33,8 +34,9 @@ public class RatingsController {
     }
 
     @PostMapping("")
-    public ResponseBody postRating(@RequestBody PostRatingRequestBody postRatingRequestBody){
-        return ratingService.postRating(postRatingRequestBody);
+    public ResponseBody postRating(HttpServletRequest httpServletRequest,
+                                   @RequestBody PostRatingRequestBody postRatingRequestBody){
+        return ratingService.postRating(httpServletRequest.getSession(false),postRatingRequestBody);
     }
 
     @PatchMapping("/{rId}")

@@ -16,7 +16,7 @@ public class ProfessorDaoImpl implements ProfessorDao {
     }
 
     @Override
-    public Map<String, Object> getProfessorAndRelatedDepartmentAndSchool(long pId) {
+    public Map<String, Object> getProfessorAndRelatedDepartmentAndSchoolBypId(long pId) {
         Map<String,Object> map = new HashMap<>();
 
         map.put("professor", new Professor(1,"yicheng","chen",1,1,4.8,0.84,3.2));

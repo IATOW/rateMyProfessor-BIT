@@ -1,12 +1,10 @@
 package edu.bitcs.rate_my_professor.controllers;
 
+import edu.bitcs.rate_my_professor.dtos.request_body.PostProfessorTagsRequestBody;
 import edu.bitcs.rate_my_professor.dtos.response_body.ResponseBody;
 import edu.bitcs.rate_my_professor.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tags")
@@ -21,5 +19,10 @@ public class TagsController {
         }else{
             return tagService.getTagsBypId(pId);
         }
+    }
+
+    @PostMapping("")
+    public ResponseBody postRatingTags(@RequestBody PostProfessorTagsRequestBody postProfessorTagsRequestBody){
+        return tagService.postProfessorTags(postProfessorTagsRequestBody);
     }
 }

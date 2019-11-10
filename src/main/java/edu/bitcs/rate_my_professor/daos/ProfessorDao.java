@@ -6,6 +6,6 @@ import java.util.Map;
 
 public interface ProfessorDao extends Dao {
     Professor getProfessorBypId(long pId);
-    Map<String,Object> getProfessorAndRelatedDepartmentAndSchool(long pId);
+    Map<String,Object> getProfessorAndRelatedDepartmentAndSchoolBypId(long pId);
 
 }

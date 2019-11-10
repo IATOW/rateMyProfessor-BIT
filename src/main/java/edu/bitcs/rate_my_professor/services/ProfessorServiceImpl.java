@@ -26,18 +26,30 @@ public class ProfessorServiceImpl implements ProfessorService {
     public ResponseBody getProfessorInfoBypId(String pId) {
         ResponseBody responseBody;
 
-        Map<String,Object> map = professorDao.getProfessorAndRelatedDepartmentAndSchool(IdHelper.getIdFromStringId(pId));
-
-        Professor professor = (Professor) map.get("professor");
-        Department department = (Department) map.get("department");
-        School school = (School) map.get("school");
-
-        if(professor==null||department==null||school==null){
-            responseBody = new ResponseBody(ResponseBody.GET_USER_ERROR,"数据库错误",null);
+        if(pId == null){
+            responseBody = new ResponseBody(ResponseBody.WRONG_PARAMS,"参数错误",null);
         }else{
-            responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new ProfessorInfo(professor,department,
-                    school));
+            Long id = IdHelper.getIdFromStringId(pId);
+
+            if(id==null){
+                responseBody = new ResponseBody(ResponseBody.WRONG_PARAMS,"参数错误",null);
+            }else{
+                Map<String,Object> map = professorDao.getProfessorAndRelatedDepartmentAndSchoolBypId(id);
+
+                Professor professor = (Professor) map.get("professor");
+                Department department = (Department) map.get("department");
+                School school = (School) map.get("school");
+
+                if(professor==null||department==null||school==null){
+                    responseBody = new ResponseBody(ResponseBody.GET_PROFESSOR_ERROR,"数据库错误",null);
+                }else{
+                    responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new ProfessorInfo(professor,department,
+                            school));
+                }
+            }
         }
+
+
 
         return responseBody;
     }
