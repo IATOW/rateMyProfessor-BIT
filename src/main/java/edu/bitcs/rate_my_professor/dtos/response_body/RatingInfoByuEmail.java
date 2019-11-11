@@ -13,7 +13,7 @@ public class RatingInfoByuEmail {
     private long limit;
     private long total;
 
-    private ArrayList<Object> ratings;
+    private Object ratings;
 
     private ArrayList<Link> links;
 

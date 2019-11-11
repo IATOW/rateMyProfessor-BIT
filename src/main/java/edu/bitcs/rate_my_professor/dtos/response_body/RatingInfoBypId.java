@@ -11,7 +11,7 @@ public class RatingInfoBypId {
     private long limit;
     private long total;
 
-    private ArrayList<RatingInfoData> ratings;
+    private Object ratings;
 
     private ArrayList<Link> links;
 

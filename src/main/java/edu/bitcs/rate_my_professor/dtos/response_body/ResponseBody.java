@@ -23,6 +23,9 @@ public class ResponseBody {
     public static final int CREATE_RATING_ERROR = 5001;
     public static final int UPDATE_RATING_ERROR = 5002;
 
+    public static final int GET_TAGS_ERROR = 6000;
+    public static final int CREATE_TAGS_ERROR = 60001;
+
     private int code;
     private String msg;
     private Object data;
