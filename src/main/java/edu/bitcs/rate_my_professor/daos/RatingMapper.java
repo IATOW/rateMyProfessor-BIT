@@ -18,8 +18,8 @@ public interface RatingMapper {
     @Select("select Rating.rId,Rating.rCourse,Rating.rProfessor,Rating.rUser,Rating.rQuality,Rating.rDifficulty,Rating.rTakeAgain,Rating.rAttendance,Rating.rGradeReceived,Rating.rComment,Rating.rDate,Rating.rPeopleFoundUseful,Rating.rPeopleDidNotFindUseful ,Course.cId,Course.cName from Rating,Course where Rating.rProfessor = #{pId} and Rating.rCourse = Course.cId order by rId limit #{offset}, #{limit}")
     List<Map<String,Object>> getRatingAndCourseBypIdWithOffsetAndLimit(long pId, long offset, long limit);
 
-    @Select("select Rating.rId,Rating.rCourse,Rating.rProfessor,Rating.rUser,Rating.rQuality,Rating.rDifficulty,Rating.rTakeAgain,Rating.rAttendance,Rating.rGradeReceived,Rating.rComment,Rating.rDate,Rating.rPeopleFoundUseful,Rating.rPeopleDidNotFindUseful ,Course.cId,Course.cName ,Professor.pId, Professor.pFirstName, Professor.pLastName from Rating,Course,Professor where Rating.rUser = #{uEmail} and Rating.rProfessor = Professor.pId and Rating.rCourse = Course.cId order by rId limit #{offset}, #{limit}")
-    List<Map<String,Object>> getRatingAndCourseAndProfessorByuEmailWithOffsetAndLimit(String uEmail,long offset,long limit);
+    @Select("select Rating.rId,Rating.rCourse,Rating.rProfessor,Rating.rUser,Rating.rQuality,Rating.rDifficulty,Rating.rTakeAgain,Rating.rAttendance,Rating.rGradeReceived,Rating.rComment,Rating.rDate,Rating.rPeopleFoundUseful,Rating.rPeopleDidNotFindUseful ,Course.cId,Course.cName ,Professor.pId, Professor.pFirstName, Professor.pLastName from Rating,Course,Professor where Rating.rUser = #{uId} and Rating.rProfessor = Professor.pId and Rating.rCourse = Course.cId order by rId limit #{offset}, #{limit}")
+    List<Map<String,Object>> getRatingAndCourseAndProfessorByuIdWithOffsetAndLimit(long uId, long offset, long limit);
 
     @Select("select count(rId) from Rating")
     long getTotalNumber();

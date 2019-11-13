@@ -11,7 +11,7 @@ public class Rating {
     private long rId;
     private long rCourse;
     private long rProfessor;
-    private String rUser;
+    private long rUser;
     private double rQuality;
     private double rDifficulty;
     private boolean rTakeAgain;
@@ -25,7 +25,7 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(PostRatingRequestBody postRatingRequestBody, String uEmail) throws NullPointerException{
+    public Rating(PostRatingRequestBody postRatingRequestBody) throws NullPointerException{
 
         String rCourse = postRatingRequestBody.getrCourse();
         Long rCourseId = IdHelper.getIdFromStringId(rCourse);
@@ -34,8 +34,6 @@ public class Rating {
         String rProfessor = postRatingRequestBody.getrProfessor();
         Long rProfessorId = IdHelper.getIdFromStringId(rProfessor);
         this.rProfessor = rProfessorId;
-
-        this.rUser = uEmail;
 
         this.rQuality = postRatingRequestBody.getrQuality();
         this.rDifficulty = postRatingRequestBody.getrDifficulty();
@@ -50,7 +48,7 @@ public class Rating {
         this.rPeopleDidNotFindUseful = 0;
     }
 
-    public Rating(long rId, long rCourse, long rProfessor, String rUser, double rQuality, double rDifficulty, boolean rTakeAgain, boolean rAttendance, String rGradeReceived, String rComment, Date rDate, int rPeopleFoundUseful, int rPeopleDidNotFindUseful) {
+    public Rating(long rId, long rCourse, long rProfessor, long rUser, double rQuality, double rDifficulty, boolean rTakeAgain, boolean rAttendance, String rGradeReceived, String rComment, Date rDate, int rPeopleFoundUseful, int rPeopleDidNotFindUseful) {
         this.rId = rId;
         this.rCourse = rCourse;
         this.rProfessor = rProfessor;
@@ -90,11 +88,11 @@ public class Rating {
         this.rProfessor = rProfessor;
     }
 
-    public String getrUser() {
+    public long getrUser() {
         return rUser;
     }
 
-    public void setrUser(String rUser) {
+    public void setrUser(long rUser) {
         this.rUser = rUser;
     }
 

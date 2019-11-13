@@ -13,7 +13,7 @@ public class TagsController {
     private TagService tagService;
 
     @GetMapping("")
-    public ResponseBody getTagsBypId(@RequestParam("pId")String pId){
+    public ResponseBody getTagsBypId(@RequestParam(value = "pId",required = false)String pId){
         if(pId==null){
             return tagService.getTags();
         }else{

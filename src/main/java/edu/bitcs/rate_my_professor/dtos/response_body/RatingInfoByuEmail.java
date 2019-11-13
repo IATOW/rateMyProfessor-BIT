@@ -77,7 +77,7 @@ public class RatingInfoByuEmail {
             ratingInfoDataByuEmail.setrPeopleFoundUseful(rating.getrPeopleFoundUseful());
             ratingInfoDataByuEmail.setrPeopleDidNotFoundUseful(rating.getrPeopleDidNotFindUseful());
 
-            ArrayList<String> rTags = new ArrayList<>();
+            List<String> rTags = new ArrayList<>();
             for(Tag tag:tags){
                 rTags.add(tag.gettName());
             }
@@ -96,6 +96,22 @@ public class RatingInfoByuEmail {
         }
 
         this.ratings = ratingInfoDataByuEmailArrayList;
+
+        List<Link> links = new ArrayList<>();
+
+        long nextOffset = offset+limit;
+        if(nextOffset<total){
+            Link linkForNextPage = new Link("nextPage","/ratings?offset="+nextOffset+"&limit="+limit);
+            links.add(linkForNextPage);
+        }
+
+        long prevOffset = offset-limit;
+        if(prevOffset>=0){
+            Link linkForPrevPage = new Link("prevPage","/ratings?offset="+prevOffset+"&limit="+limit);
+            links.add(linkForPrevPage);
+        }
+
+        this.links = links;
     }
 
     public long getOffset() {

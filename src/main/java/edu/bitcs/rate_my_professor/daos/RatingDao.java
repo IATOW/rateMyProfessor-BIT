@@ -18,7 +18,7 @@ public interface RatingDao extends Dao{
 
     long getTotalNumber();
 
-    boolean insertRatingAndRelatedTags(Rating rating, List<Tag> tags);
+    boolean insertRatingAndRelatedTags(Rating rating, List<Tag> tags, String uEmail);
 
     boolean addOneOnRatingByrId(long rId);
     boolean minusOneOnRatingByrId(long rId);

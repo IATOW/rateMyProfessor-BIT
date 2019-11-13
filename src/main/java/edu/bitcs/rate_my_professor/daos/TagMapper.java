@@ -14,10 +14,10 @@ public interface TagMapper {
     @Select("select * from Tag")
     List<Tag> getTags();
 
-    @Select("select ProfessorsHasTags.pId, ProfessorsHasTags.tId, ProfessorsHasTags.number, Tag.tId, Tag.tName from ProfessorsHasTags, Tag where ProfessorsHasTags.pId = #{pId} and ProfessorsHasTags.tId = Tag.tId")
+    @Select("select ProfessorsHasTags.pId, ProfessorsHasTags.tId, ProfessorsHasTags.ptNumber, Tag.tId, Tag.tName from ProfessorsHasTags, Tag where ProfessorsHasTags.pId = #{pId} and ProfessorsHasTags.ptNumber > 0 and ProfessorsHasTags.tId = Tag.tId")
     List<Map<String,Object>> getTagsBypId(long pId);
 
-    @Update("update ProfessorsHasTags set number = number+1 where pId = #{pId} and tId = #{tId}")
+    @Update("update ProfessorsHasTags set ptNumber = ptNumber+1 where pId = #{pId} and tId = #{tId}")
     long insertTagBypId(long tId,long pId);
 
 }

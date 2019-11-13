@@ -30,7 +30,7 @@ public class TagDaoImpl implements TagDao {
             Tag tag = new Tag((long)map.get("tId"),(String)map.get("tName"));
             tags.add(tag);
 
-            numbers.add((int)map.get("number"));
+            numbers.add((int)map.get("ptNumber"));
         }
 
         Map<String,Object> map = new HashMap<>();

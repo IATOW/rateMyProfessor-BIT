@@ -11,6 +11,9 @@ public interface UserMapper {
     @Select("select uPassword from User where uEmail = #{uEmail}")
     String getuPasswordByuEmail(String uEmail);
 
+    @Select("select uId from User where uEmail = #{uEmail}")
+    long getuIdByuEmail(String uEmail);
+
     @Insert("insert into User(uEmail,uPassword,uFirstName,uLastName) values(#{uEmail},#{uPassword},#{uFirstName},#{uLastName})")
     @Options(useGeneratedKeys = true, keyProperty = "uId")
     long insertUser(User user);

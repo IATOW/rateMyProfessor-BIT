@@ -182,10 +182,10 @@ public class RatingServiceImpl implements RatingService {
 
             String uEmail = logInRequestBody.getuEmail();
 
-            Rating rating = null;
+            Rating rating;
 
             try {
-                rating = new Rating(postRatingRequestBody, uEmail);
+                rating = new Rating(postRatingRequestBody);
             }
             catch (NullPointerException e) {
                 responseBody = new ResponseBody(ResponseBody.WRONG_PARAMS,"参数错误",null);
@@ -216,7 +216,7 @@ public class RatingServiceImpl implements RatingService {
             if(istIdParamWrong){
                 responseBody = new ResponseBody(ResponseBody.WRONG_PARAMS,"参数错误",null);
             }else{
-                if(ratingDao.insertRatingAndRelatedTags(rating,tags)){
+                if(ratingDao.insertRatingAndRelatedTags(rating,tags,uEmail)){
                     responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",null);
                 }else{
                     responseBody = new ResponseBody(ResponseBody.CREATE_RATING_ERROR,"数据库错误",null);

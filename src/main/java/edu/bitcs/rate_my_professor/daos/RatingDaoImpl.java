@@ -18,12 +18,15 @@ public class RatingDaoImpl implements RatingDao {
     @Autowired
     private RatingMapper ratingMapper;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public Map<String, Object> getRatingAndRelatedTagsAndCourseByrId(long rId) {
         Map<String,Object> map = ratingMapper.getRatingAndRelatedCourseByrId(rId);
 
         Rating rating = new Rating((long)map.get("rId"),(long)map.get("rCourse"),(long)map.get("rProfessor"),
-               (String)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
+               (long)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
                (boolean)map.get("rTakeAgain"),(boolean)map.get("rAttendance"),(String)map.get("rGradeReceived"),
                (String)map.get("rComment"),(Date)map.get("rDate"),(int)map.get("rPeopleFoundUseful"),
                 (int)map.get("rPeopleDidNotFindUseful"));
@@ -55,7 +58,7 @@ public class RatingDaoImpl implements RatingDao {
 
         for(Map<String,Object> map:list){
             Rating rating = new Rating((long)map.get("rId"),(long)map.get("rCourse"),(long)map.get("rProfessor"),
-                    (String)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
+                    (long)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
                     (boolean)map.get("rTakeAgain"),(boolean)map.get("rAttendance"),(String)map.get("rGradeReceived"),
                     (String)map.get("rComment"),(Date)map.get("rDate"),(int)map.get("rPeopleFoundUseful"),
                     (int)map.get("rPeopleDidNotFindUseful"));
@@ -85,7 +88,9 @@ public class RatingDaoImpl implements RatingDao {
 
     @Override
     public Map<String, Object> getRatingsAndRelatedTagsAndCourseAndProfessorByuEmailWithOffsetAndLimit(String uEmail, long offset, long limit) {
-        List<Map<String,Object>> list = ratingMapper.getRatingAndCourseAndProfessorByuEmailWithOffsetAndLimit(uEmail, offset, limit);
+        long uId = userMapper.getuIdByuEmail(uEmail);
+
+        List<Map<String,Object>> list = ratingMapper.getRatingAndCourseAndProfessorByuIdWithOffsetAndLimit(uId, offset, limit);
 
         List<Rating> ratings = new ArrayList<>();
         List<List<Tag>> tagss = new ArrayList<>();
@@ -94,7 +99,7 @@ public class RatingDaoImpl implements RatingDao {
 
         for(Map<String,Object> map:list){
             Rating rating = new Rating((long)map.get("rId"),(long)map.get("rCourse"),(long)map.get("rProfessor"),
-                    (String)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
+                    (long)map.get("rUser"),(double)map.get("rQuality"),(double)map.get("rDifficulty"),
                     (boolean)map.get("rTakeAgain"),(boolean)map.get("rAttendance"),(String)map.get("rGradeReceived"),
                     (String)map.get("rComment"),(Date)map.get("rDate"),(int)map.get("rPeopleFoundUseful"),
                     (int)map.get("rPeopleDidNotFindUseful"));
@@ -130,7 +135,10 @@ public class RatingDaoImpl implements RatingDao {
     }
 
     @Override
-    public boolean insertRatingAndRelatedTags(Rating rating, List<Tag> tags) {
+    public boolean insertRatingAndRelatedTags(Rating rating, List<Tag> tags, String uEmail) {
+        long uId = userMapper.getuIdByuEmail(uEmail);
+        rating.setrUser(uId);
+
         if(ratingMapper.insertRating(rating)==0){
             return false;
         }else{
