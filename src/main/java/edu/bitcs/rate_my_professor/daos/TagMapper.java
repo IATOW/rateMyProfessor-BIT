@@ -11,13 +11,13 @@ import java.util.Map;
 
 @Mapper
 public interface TagMapper {
-    @Select("select * from Tag")
+    @Select("select * from Tag order by tNumber desc")
     List<Tag> getTags();
 
-    @Select("select ProfessorsHasTags.pId, ProfessorsHasTags.tId, ProfessorsHasTags.ptNumber, Tag.tId, Tag.tName from ProfessorsHasTags, Tag where ProfessorsHasTags.pId = #{pId} and ProfessorsHasTags.ptNumber > 0 and ProfessorsHasTags.tId = Tag.tId")
+    @Select("select ProfessorsHasTags.pId, ProfessorsHasTags.tId, ProfessorsHasTags.ptNumber, Tag.tId, Tag.tName from ProfessorsHasTags, Tag where ProfessorsHasTags.pId = #{pId} and ProfessorsHasTags.tId = Tag.tId")
     List<Map<String,Object>> getTagsBypId(long pId);
 
-    @Update("update ProfessorsHasTags set ptNumber = ptNumber+1 where pId = #{pId} and tId = #{tId}")
-    long insertTagBypId(long tId,long pId);
+    @Select("call insertTagBypId(#{pId},#{tId})")
+    void insertTagBypId(long pId,long tId);
 
 }

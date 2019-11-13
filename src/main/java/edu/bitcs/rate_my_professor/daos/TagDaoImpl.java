@@ -44,9 +44,7 @@ public class TagDaoImpl implements TagDao {
     @Override
     public boolean insertTagsBypId(List<Tag> tags, long pId) {
         for(Tag tag:tags){
-            if(tagMapper.insertTagBypId(tag.gettId(), pId)==0){
-                return false;
-            }
+            tagMapper.insertTagBypId(pId, tag.gettId());
         }
 
         return true;

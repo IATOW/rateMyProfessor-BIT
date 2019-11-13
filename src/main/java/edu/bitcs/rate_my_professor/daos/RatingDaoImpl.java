@@ -151,6 +151,7 @@ public class RatingDaoImpl implements RatingDao {
             }
         }
 
+
         return true;
     }
 
