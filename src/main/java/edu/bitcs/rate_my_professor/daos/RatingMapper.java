@@ -3,6 +3,7 @@ package edu.bitcs.rate_my_professor.daos;
 import edu.bitcs.rate_my_professor.pos.Rating;
 import edu.bitcs.rate_my_professor.pos.Tag;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.StatementType;
 
 import java.util.List;
 import java.util.Map;
@@ -24,12 +25,13 @@ public interface RatingMapper {
     @Select("select count(rId) from Rating")
     long getTotalNumber();
 
-    @Insert("insert into Rating(rCourse,rProfessor,rUser,rQuality,rDifficulty,rTakeAgain,rAttendance,rGradeReceived,rComment,rDate,rPeopleFoundUseful,rPeopleDidNotFindUseful) values(#{rCourse},#{rProfessor},#{rUser},#{rQuality},#{rDifficulty},#{rTakeAgain},#{rAttendance},#{rGradeReceived},#{rComment},#{rDate},#{rPeopleFoundUseful},#{rPeopleDidNotFindUseful})")
-    @Options(useGeneratedKeys = true, keyProperty = "rId")
-    long insertRating(Rating rating);
+    @Select("call insertRatingAndUpdateProfessor(#{rId,mode = OUT, jdbcType = BIGINT},#{rCourse},#{rProfessor},#{rUser},#{rQuality},#{rDifficulty},#{rTakeAgain},#{rAttendance},#{rGradeReceived},#{rComment},#{rDate},#{rPeopleFoundUseful},#{rPeopleDidNotFindUseful})")
+    @Options(statementType = StatementType.CALLABLE)
+    void insertRatingAndUpdateProfessor(Rating rating);
 
-    @Insert("insert into RatingsHasTags values(#{rId},#{tId})")
-    long insetRatingsHasTags(long rId,long tId);
+    @Select("call insertRatingsHasTagsAndUpdateTagAndUpdateProfessorsHasTags(#{rId},#{tId},#{pId})")
+    @Options(statementType = StatementType.CALLABLE)
+    void insertRatingsHasTagsAndUpdateTagAndUpdateProfessorsHasTags(long rId, long tId, long pId);
 
     @Update("update Rating set rPeopleFoundUseful = rPeopleFoundUseful+1 where rId = #{rId}")
     long updateRatingLikeNumber(long rId);

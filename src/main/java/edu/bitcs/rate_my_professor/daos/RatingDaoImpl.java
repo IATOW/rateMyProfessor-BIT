@@ -19,6 +19,9 @@ public class RatingDaoImpl implements RatingDao {
     private RatingMapper ratingMapper;
 
     @Autowired
+    private TagMapper tagMapper;
+
+    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -139,18 +142,11 @@ public class RatingDaoImpl implements RatingDao {
         long uId = userMapper.getuIdByuEmail(uEmail);
         rating.setrUser(uId);
 
-        if(ratingMapper.insertRating(rating)==0){
-            return false;
-        }else{
-            long rId = rating.getrId();
+        ratingMapper.insertRatingAndUpdateProfessor(rating);
 
-            for(Tag tag:tags){
-                if(ratingMapper.insetRatingsHasTags(rId, tag.gettId())==0){
-                    return false;
-                }
-            }
+        for(Tag tag:tags){
+            ratingMapper.insertRatingsHasTagsAndUpdateTagAndUpdateProfessorsHasTags(rating.getrId(),tag.gettId(),rating.getrProfessor());
         }
-
 
         return true;
     }
