@@ -3,6 +3,7 @@ package edu.bitcs.rate_my_professor.dtos.response_body;
 import edu.bitcs.rate_my_professor.pos.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TagInfoBypId {
     private Object tTags;
@@ -10,7 +11,7 @@ public class TagInfoBypId {
     public TagInfoBypId() {
     }
 
-    public TagInfoBypId(ArrayList<Tag> tags,ArrayList<Integer> numbers) {
+    public TagInfoBypId(List<Tag> tags, List<Integer> numbers) {
         class TagInfoBypIdData{
             private String tName;
             private int tNumber;

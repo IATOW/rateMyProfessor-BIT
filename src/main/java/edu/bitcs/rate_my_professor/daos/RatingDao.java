@@ -4,6 +4,7 @@ import edu.bitcs.rate_my_professor.pos.Rating;
 import edu.bitcs.rate_my_professor.pos.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface RatingDao extends Dao{
@@ -17,10 +18,9 @@ public interface RatingDao extends Dao{
 
     long getTotalNumber();
 
-    boolean insertRatingAndRelatedTags(Rating rating, ArrayList<Tag> tags);
-    boolean insertTagsBypId(ArrayList<Tag> tags);
+    boolean insertRatingAndRelatedTags(Rating rating, List<Tag> tags);
 
-    boolean addOneOnRatingBypId(long pId);
-    boolean minusOneOnRatingBypId(long pId);
+    boolean addOneOnRatingByrId(long rId);
+    boolean minusOneOnRatingByrId(long rId);
 
 }

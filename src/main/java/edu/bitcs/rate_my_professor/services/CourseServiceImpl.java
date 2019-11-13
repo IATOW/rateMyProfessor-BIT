@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -26,7 +27,7 @@ public class CourseServiceImpl implements CourseService {
             if(id==null){
                 responseBody = new ResponseBody(ResponseBody.WRONG_PARAMS,"参数错误",null);
             }else {
-                ArrayList<Course> courses = courseDao.getCoursesBypId(id);
+                List<Course> courses = courseDao.getCoursesBypId(id);
 
                 if (courses == null) {
                     responseBody = new ResponseBody(ResponseBody.GET_COURSE_ERROR, "数据库错误", null);

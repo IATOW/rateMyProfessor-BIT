@@ -7,6 +7,7 @@ import edu.bitcs.rate_my_professor.pos.Tag;
 import edu.bitcs.rate_my_professor.services.IdHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RatingInfoByuEmail {
     private long offset;
@@ -15,13 +16,13 @@ public class RatingInfoByuEmail {
 
     private Object ratings;
 
-    private ArrayList<Link> links;
+    private List<Link> links;
 
     public RatingInfoByuEmail() {
     }
 
-    public RatingInfoByuEmail(long offset, long limit, long total, ArrayList<Rating> ratings, ArrayList<ArrayList<Tag>> tagss,
-                              ArrayList<Course> courses, ArrayList<Professor> professors) {
+    public RatingInfoByuEmail(long offset, long limit, long total, List<Rating> ratings, List<List<Tag>> tagss,
+                              List<Course> courses, List<Professor> professors) {
         class RatingInfoDataByuEmail extends RatingInfoData{
             private String rProfessor;
             private Link link;
@@ -62,16 +63,17 @@ public class RatingInfoByuEmail {
 
             Rating rating = ratings.get(i);
             Course course = courses.get(i);
-            ArrayList <Tag> tags = tagss.get(i);
+            List <Tag> tags = tagss.get(i);
             Professor professor = professors.get(i);
 
-            ratingInfoDataByuEmail.setrDate(rating.getrDate());
+            ratingInfoDataByuEmail.setrDate(rating.getrDate().toString());
             ratingInfoDataByuEmail.setrQuality(rating.getrQuality());
             ratingInfoDataByuEmail.setrDifficulty(rating.getrDifficulty());
-            ratingInfoDataByuEmail.setrClass(course.getName());
+            ratingInfoDataByuEmail.setrClass(course.getcName());
             ratingInfoDataByuEmail.setrAttendance(rating.isrAttendance());
             ratingInfoDataByuEmail.setrTakeAgain(rating.isrTakeAgain());
             ratingInfoDataByuEmail.setrGradeReceived(rating.getrGradeReceived());
+            ratingInfoDataByuEmail.setrComment(rating.getrComment());
             ratingInfoDataByuEmail.setrPeopleFoundUseful(rating.getrPeopleFoundUseful());
             ratingInfoDataByuEmail.setrPeopleDidNotFoundUseful(rating.getrPeopleDidNotFindUseful());
 
@@ -94,5 +96,45 @@ public class RatingInfoByuEmail {
         }
 
         this.ratings = ratingInfoDataByuEmailArrayList;
+    }
+
+    public long getOffset() {
+        return offset;
+    }
+
+    public void setOffset(long offset) {
+        this.offset = offset;
+    }
+
+    public long getLimit() {
+        return limit;
+    }
+
+    public void setLimit(long limit) {
+        this.limit = limit;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
+    public Object getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Object ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
     }
 }

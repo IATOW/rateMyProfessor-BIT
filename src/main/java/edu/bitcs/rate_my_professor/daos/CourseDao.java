@@ -3,9 +3,9 @@ package edu.bitcs.rate_my_professor.daos;
 import edu.bitcs.rate_my_professor.pos.Course;
 import org.springframework.lang.Nullable;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CourseDao extends Dao {
-    ArrayList<Course> getCoursesBypId(long pId);
+    List<Course> getCoursesBypId(long pId);
     Course getCourseBycId(long cId);
 }

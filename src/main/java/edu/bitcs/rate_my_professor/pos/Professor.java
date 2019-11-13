@@ -6,21 +6,21 @@ public class Professor {
     private String pLastName;
     private long pDepartment;
     private long pSchool;
-    private double pOverAllQuality;
-    private double PWouldTakeAgain;
+    private double pOverallQuality;
+    private double pWouldTakeAgain;
     private double pLevelOfDifficulty;
 
     public Professor() {
     }
 
-    public Professor(long pId, String pFirstName, String pLastName, long pDepartment, long pSchool, double pOverAllQuality, double PWouldTakeAgain, double pLevelOfDifficulty) {
+    public Professor(long pId, String pFirstName, String pLastName, long pDepartment, long pSchool, double pOverallQuality, double pWouldTakeAgain, double pLevelOfDifficulty) {
         this.pId = pId;
         this.pFirstName = pFirstName;
         this.pLastName = pLastName;
         this.pDepartment = pDepartment;
         this.pSchool = pSchool;
-        this.pOverAllQuality = pOverAllQuality;
-        this.PWouldTakeAgain = PWouldTakeAgain;
+        this.pOverallQuality = pOverallQuality;
+        this.pWouldTakeAgain = pWouldTakeAgain;
         this.pLevelOfDifficulty = pLevelOfDifficulty;
     }
 
@@ -64,20 +64,20 @@ public class Professor {
         this.pSchool = pSchool;
     }
 
-    public double getpOverAllQuality() {
-        return pOverAllQuality;
+    public double getpOverallQuality() {
+        return pOverallQuality;
     }
 
-    public void setpOverAllQuality(double pOverAllQuality) {
-        this.pOverAllQuality = pOverAllQuality;
+    public void setpOverallQuality(double pOverallQuality) {
+        this.pOverallQuality = pOverallQuality;
     }
 
-    public double getPWouldTakeAgain() {
-        return PWouldTakeAgain;
+    public double getpWouldTakeAgain() {
+        return pWouldTakeAgain;
     }
 
-    public void setPWouldTakeAgain(double PWouldTakeAgain) {
-        this.PWouldTakeAgain = PWouldTakeAgain;
+    public void setpWouldTakeAgain(double pWouldTakeAgain) {
+        this.pWouldTakeAgain = pWouldTakeAgain;
     }
 
     public double getpLevelOfDifficulty() {

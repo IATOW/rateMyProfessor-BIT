@@ -1,5 +1,6 @@
 package edu.bitcs.rate_my_professor.services;
 
+import edu.bitcs.rate_my_professor.daos.ProfessorMapper;
 import edu.bitcs.rate_my_professor.daos.UserDao;
 import edu.bitcs.rate_my_professor.dtos.response_body.ResponseBody;
 import edu.bitcs.rate_my_professor.dtos.request_body.DeleteAccountRequestBody;
@@ -82,7 +83,7 @@ public class UserServiceImpl implements UserService{
             responseBody = new ResponseBody(ResponseBody.INVALID_SESSION,"无效的会话",null);
         }else{
             LogInRequestBody logInRequestBody = (LogInRequestBody)httpSession.getAttribute(LOG_IN_REQUEST_BODY);
-            User user = userDao.getUser(logInRequestBody.getuEmail());
+            User user = userDao.getUserByuEmail(logInRequestBody.getuEmail());
             if(user!=null){
                 responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new UserInfo(user));
             }else {
@@ -104,6 +105,9 @@ public class UserServiceImpl implements UserService{
             LogInRequestBody logInRequestBody = (LogInRequestBody)httpSession.getAttribute(LOG_IN_REQUEST_BODY);
             if(logInRequestBody.getuPassword().equals(editInfoRequestBody.getuPassword())){
                 if(userDao.updateUserByuEmail(new User(editInfoRequestBody),logInRequestBody.getuEmail())){
+                    logInRequestBody.setuEmail(editInfoRequestBody.getuNewEmail());
+                    logInRequestBody.setuPassword(editInfoRequestBody.getuPassword());
+
                     responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",null);
                 }else{
                     responseBody = new ResponseBody(ResponseBody.UPDATE_USER_ERROR,"数据库错误",null);

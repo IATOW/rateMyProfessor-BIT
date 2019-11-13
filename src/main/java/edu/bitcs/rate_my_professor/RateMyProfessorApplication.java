@@ -11,5 +11,4 @@ public class RateMyProfessorApplication {
         SpringApplication.run(RateMyProfessorApplication.class, args);
     }
 
-
 }

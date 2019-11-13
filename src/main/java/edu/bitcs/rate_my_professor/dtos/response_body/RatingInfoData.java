@@ -1,6 +1,7 @@
 package edu.bitcs.rate_my_professor.dtos.response_body;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RatingInfoData {
     private String rDate;
@@ -10,14 +11,15 @@ public class RatingInfoData {
     private boolean rAttendance;
     private boolean rTakeAgain;
     private String rGradeReceived;
+    private String rComment;
     private int rPeopleFoundUseful;
     private int rPeopleDidNotFoundUseful;
-    private ArrayList<String> rTags;
+    private List<String> rTags;
 
     public RatingInfoData() {
     }
 
-    public RatingInfoData(String rDate, double rQuality, double rDifficulty, String rClass, boolean rAttendance, boolean rTakeAgain, String rGradeReceived, int rPeopleFoundUseful, int rPeopleDidNotFoundUseful, ArrayList<String> rTags) {
+    public RatingInfoData(String rDate, double rQuality, double rDifficulty, String rClass, boolean rAttendance, boolean rTakeAgain, String rGradeReceived, String rComment, int rPeopleFoundUseful, int rPeopleDidNotFoundUseful, List<String> rTags) {
         this.rDate = rDate;
         this.rQuality = rQuality;
         this.rDifficulty = rDifficulty;
@@ -25,6 +27,7 @@ public class RatingInfoData {
         this.rAttendance = rAttendance;
         this.rTakeAgain = rTakeAgain;
         this.rGradeReceived = rGradeReceived;
+        this.rComment = rComment;
         this.rPeopleFoundUseful = rPeopleFoundUseful;
         this.rPeopleDidNotFoundUseful = rPeopleDidNotFoundUseful;
         this.rTags = rTags;
@@ -86,6 +89,14 @@ public class RatingInfoData {
         this.rGradeReceived = rGradeReceived;
     }
 
+    public String getrComment() {
+        return rComment;
+    }
+
+    public void setrComment(String rComment) {
+        this.rComment = rComment;
+    }
+
     public int getrPeopleFoundUseful() {
         return rPeopleFoundUseful;
     }
@@ -102,11 +113,11 @@ public class RatingInfoData {
         this.rPeopleDidNotFoundUseful = rPeopleDidNotFoundUseful;
     }
 
-    public ArrayList<String> getrTags() {
+    public List<String> getrTags() {
         return rTags;
     }
 
-    public void setrTags(ArrayList<String> rTags) {
+    public void setrTags(List<String> rTags) {
         this.rTags = rTags;
     }
 }

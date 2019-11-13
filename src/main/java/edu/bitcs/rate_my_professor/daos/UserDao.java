@@ -7,7 +7,7 @@ public interface UserDao extends Dao {
     boolean isPasswordCorrect(String uEmail, String uPassword);
 
     boolean insertUser(User user);
-    User getUser(String uEmail);
+    User getUserByuEmail(String uEmail);
     boolean updateUserByuEmail(User user,String uEmail);
     boolean deleteUserByuEmail(String uEmail);
 }

@@ -1,6 +1,8 @@
 package edu.bitcs.rate_my_professor.dtos.response_body;
 
 public class Link {
+    public final static int LIMIT = 10;
+
     private String rel;
     private String href;
 

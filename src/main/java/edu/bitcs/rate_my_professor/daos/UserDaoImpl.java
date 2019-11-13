@@ -1,38 +1,64 @@
 package edu.bitcs.rate_my_professor.daos;
 
 import edu.bitcs.rate_my_professor.pos.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public boolean isEmailExisted(String uEmail) {
-        return true;
+        if(userMapper.numberOfEmail(uEmail)==1){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean isPasswordCorrect(String uEmail, String uPassword) {
-        return true;
+        String uPasswordInDb = userMapper.getuPasswordByuEmail(uEmail);
+
+        if(uPasswordInDb.equals(uPassword)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean insertUser(User user) {
-        return false;
+        if(userMapper.insertUser(user)>=0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
-    public User getUser(String uEmail) {
-        return new User("yichengchen99@gmail.com","123456","yicheng","chen");
+    public User getUserByuEmail(String uEmail) {
+        return userMapper.getUserByuEmail(uEmail);
     }
 
     @Override
     public boolean updateUserByuEmail(User user, String uEmail) {
-        return false;
+        if(userMapper.updateUserByuEmail(user.getuEmail(),user.getuPassword(),user.getuFirstName(),user.getuLastName(),uEmail)>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean deleteUserByuEmail(String uEmail) {
-        return false;
+        if(userMapper.deleteUserByuEmail(uEmail)>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

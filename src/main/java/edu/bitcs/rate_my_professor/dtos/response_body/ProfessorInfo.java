@@ -1,16 +1,16 @@
 package edu.bitcs.rate_my_professor.dtos.response_body;
 
-import edu.bitcs.rate_my_professor.services.Hashids;
 import edu.bitcs.rate_my_professor.pos.Department;
 import edu.bitcs.rate_my_professor.pos.Professor;
 import edu.bitcs.rate_my_professor.pos.School;
 import edu.bitcs.rate_my_professor.services.IdHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfessorInfo {
     private Object professorInfo;
-    private ArrayList<Link> links;
+    private List<Link> links;
 
     public ProfessorInfo() {
     }
@@ -24,14 +24,14 @@ public class ProfessorInfo {
             private String pSchoolWebsite;
             private String pSchoolState;
             private String pSchoolCity;
-            private double pOverAllQuality;
+            private double pOverallQuality;
             private String pWouldTakeAgain;
             private double pLevelOfDifficulty;
 
             public ProfessorInfoData() {
             }
 
-            public ProfessorInfoData(String pFirstName, String pLastName, String pDepartment, String pSchoolName, String pSchoolWebsite, String pSchoolState, String pSchoolCity, double pOverAllQuality, String pWouldTakeAgain, double pLevelOfDifficulty) {
+            public ProfessorInfoData(String pFirstName, String pLastName, String pDepartment, String pSchoolName, String pSchoolWebsite, String pSchoolState, String pSchoolCity, double pOverallQuality, String pWouldTakeAgain, double pLevelOfDifficulty) {
                 this.pFirstName = pFirstName;
                 this.pLastName = pLastName;
                 this.pDepartment = pDepartment;
@@ -39,7 +39,7 @@ public class ProfessorInfo {
                 this.pSchoolWebsite = pSchoolWebsite;
                 this.pSchoolState = pSchoolState;
                 this.pSchoolCity = pSchoolCity;
-                this.pOverAllQuality = pOverAllQuality;
+                this.pOverallQuality = pOverallQuality;
                 this.pWouldTakeAgain = pWouldTakeAgain;
                 this.pLevelOfDifficulty = pLevelOfDifficulty;
             }
@@ -100,12 +100,12 @@ public class ProfessorInfo {
                 this.pSchoolCity = pSchoolCity;
             }
 
-            public double getpOverAllQuality() {
-                return pOverAllQuality;
+            public double getpOverallQuality() {
+                return pOverallQuality;
             }
 
-            public void setpOverAllQuality(double pOverAllQuality) {
-                this.pOverAllQuality = pOverAllQuality;
+            public void setpOverallQuality(double pOverallQuality) {
+                this.pOverallQuality = pOverallQuality;
             }
 
             public String getpWouldTakeAgain() {
@@ -134,8 +134,8 @@ public class ProfessorInfo {
         professorInfoData.setpSchoolWebsite(school.getsWebsite());
         professorInfoData.setpSchoolState(school.getsState());
         professorInfoData.setpSchoolCity(school.getsCity());
-        professorInfoData.setpOverAllQuality(professor.getpOverAllQuality());
-        professorInfoData.setpWouldTakeAgain(professor.getPWouldTakeAgain()*100+"%");
+        professorInfoData.setpOverallQuality(professor.getpOverallQuality());
+        professorInfoData.setpWouldTakeAgain(professor.getpWouldTakeAgain()*100+"%");
         professorInfoData.setpLevelOfDifficulty(professor.getpLevelOfDifficulty());
 
         this.professorInfo = professorInfoData;
@@ -146,12 +146,12 @@ public class ProfessorInfo {
 
         links.add(new Link("pTags","/tags?pId="+pId));
         links.add(new Link("pCourses","/courses?pId="+pId));
-        links.add(new Link("pRatings","/ratings?pId="+pId+"&offset="+0+"&limit="+0));
+        links.add(new Link("pRatings","/ratings?pId="+pId+"&offset="+0+"&limit="+Link.LIMIT));
 
         this.links = links;
     }
 
-    public ProfessorInfo(Object professorInfo, ArrayList<Link> links) {
+    public ProfessorInfo(Object professorInfo, List<Link> links) {
         this.professorInfo = professorInfo;
         this.links = links;
     }
@@ -160,7 +160,7 @@ public class ProfessorInfo {
         return professorInfo;
     }
 
-    public ArrayList<Link> getLinks() {
+    public List<Link> getLinks() {
         return links;
     }
 }

@@ -23,9 +23,9 @@ public class RatingsController {
 
     @GetMapping("")
     public ResponseBody getRatingInfoBypIdOrByuEmail(HttpServletRequest httpServletRequest,
-                                                     @RequestParam("pId")String pId,
-                                                  @RequestParam("offset") String offset,
-                                                  @RequestParam("limit") String limit){
+                                                     @RequestParam(value = "pId",required = false)String pId,
+                                                  @RequestParam(value = "offset",required = false) String offset,
+                                                  @RequestParam(value = "limit",required = false) String limit){
         if(pId==null){
             return ratingService.getRatingInfoByuEmail(httpServletRequest.getSession(false),offset,limit);
         }else{

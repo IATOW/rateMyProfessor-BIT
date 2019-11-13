@@ -4,14 +4,15 @@ import edu.bitcs.rate_my_professor.pos.Course;
 import edu.bitcs.rate_my_professor.services.IdHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseInfo {
-    private ArrayList<Object> courseInfo;
+    private List<Object> courseInfo;
 
     public CourseInfo() {
     }
 
-    public CourseInfo(ArrayList<Course> courses){
+    public CourseInfo(List<Course> courses){
         class CourseInfoData {
             private String cId;
             private String cName;
@@ -50,7 +51,7 @@ public class CourseInfo {
             String cId = IdHelper.getStringIdFromId(id);
 
             courseInfoData.setcId(cId);
-            courseInfoData.setcName(course.getName());
+            courseInfoData.setcName(course.getcName());
 
             courseInfo.add(courseInfoData);
         }
@@ -63,11 +64,11 @@ public class CourseInfo {
 //    }
 
 
-    public ArrayList<Object> getCourseInfo() {
+    public List<Object> getCourseInfo() {
         return courseInfo;
     }
 
-    public void setCourseInfo(ArrayList<Object> courseInfo) {
+    public void setCourseInfo(List<Object> courseInfo) {
         this.courseInfo = courseInfo;
     }
 }

@@ -5,10 +5,7 @@ import edu.bitcs.rate_my_professor.daos.RatingDaoImpl;
 import edu.bitcs.rate_my_professor.dtos.request_body.LikeOrDislikeRatingByrIdRequestBody;
 import edu.bitcs.rate_my_professor.dtos.request_body.LogInRequestBody;
 import edu.bitcs.rate_my_professor.dtos.request_body.PostRatingRequestBody;
-import edu.bitcs.rate_my_professor.dtos.response_body.RatingInfoBypId;
-import edu.bitcs.rate_my_professor.dtos.response_body.RatingInfoByrId;
-import edu.bitcs.rate_my_professor.dtos.response_body.RatingInfoByuEmail;
-import edu.bitcs.rate_my_professor.dtos.response_body.ResponseBody;
+import edu.bitcs.rate_my_professor.dtos.response_body.*;
 import edu.bitcs.rate_my_professor.pos.Course;
 import edu.bitcs.rate_my_professor.pos.Professor;
 import edu.bitcs.rate_my_professor.pos.Rating;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -40,7 +38,7 @@ public class RatingServiceImpl implements RatingService {
                 Map<String,Object> map = ratingDao.getRatingAndRelatedTagsAndCourseByrId(id);
 
                 Rating rating = (Rating) map.get("rating");
-                ArrayList<Tag> tags = (ArrayList<Tag>) map.get("tags");
+                List<Tag> tags = (List<Tag>) map.get("tags");
                 Course course = (Course) map.get("course");
 
                 if(rating==null||tags==null||course==null){
@@ -69,9 +67,9 @@ public class RatingServiceImpl implements RatingService {
                 if(offset==null&&limit==null){
                     Map<String,Object> map = ratingDao.getRatingsAndRelatedTagsAndCourseBypId(id);
 
-                    ArrayList<Rating> ratings = (ArrayList<Rating>) map.get("ratings");
-                    ArrayList<ArrayList<Tag>> tagss = (ArrayList<ArrayList<Tag>>) map.get("tagss");
-                    ArrayList<Course> courses = (ArrayList<Course>) map.get("courses");
+                    List<Rating> ratings = (List<Rating>) map.get("ratings");
+                    List<List<Tag>> tagss = (List<List<Tag>>) map.get("tagss");
+                    List<Course> courses = (List<Course>) map.get("courses");
 
                     long total = ratingDao.getTotalNumber();
 
@@ -79,7 +77,7 @@ public class RatingServiceImpl implements RatingService {
                         responseBody = new ResponseBody(ResponseBody.GET_RATING_ERROR,"数据库错误",null);
                     }else{
                         responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new RatingInfoBypId(
-                                0, RatingDaoImpl.LIMIT, total, ratings, tagss, courses, pId));
+                                0, Link.LIMIT, total, ratings, tagss, courses, pId));
                     }
                 }else if(offset!=null&&limit!=null){
                     try{
@@ -89,9 +87,9 @@ public class RatingServiceImpl implements RatingService {
                         Map<String,Object> map = ratingDao.getRatingsAndRelatedTagsAndCourseBypIdWithOffsetAndLimit(id,
                                 offsetLong, limitLong);
 
-                        ArrayList<Rating> ratings = (ArrayList<Rating>) map.get("ratings");
-                        ArrayList<ArrayList<Tag>> tagss = (ArrayList<ArrayList<Tag>>) map.get("tagss");
-                        ArrayList<Course> courses = (ArrayList<Course>) map.get("courses");
+                        List<Rating> ratings = (List<Rating>) map.get("ratings");
+                        List<List<Tag>> tagss = (List<List<Tag>>) map.get("tagss");
+                        List<Course> courses = (List<Course>) map.get("courses");
 
                         long total = ratingDao.getTotalNumber();
 
@@ -127,10 +125,10 @@ public class RatingServiceImpl implements RatingService {
             if(offset==null&&limit==null){
                 Map<String,Object> map = ratingDao.getRatingsAndRelatedTagsAndCourseAndProfessorByuEmail(uEmail);
 
-                ArrayList<Rating> ratings = (ArrayList<Rating>) map.get("ratings");
-                ArrayList<ArrayList<Tag>> tagss = (ArrayList<ArrayList<Tag>>) map.get("tagss");
-                ArrayList<Course> courses = (ArrayList<Course>) map.get("courses");
-                ArrayList<Professor> professors = (ArrayList<Professor>) map.get("professors");
+                List<Rating> ratings = (List<Rating>) map.get("ratings");
+                List<List<Tag>> tagss = (List<List<Tag>>) map.get("tagss");
+                List<Course> courses = (List<Course>) map.get("courses");
+                List<Professor> professors = (List<Professor>) map.get("professors");
 
                 long total = ratingDao.getTotalNumber();
 
@@ -138,7 +136,7 @@ public class RatingServiceImpl implements RatingService {
                     responseBody = new ResponseBody(ResponseBody.GET_RATING_ERROR,"数据库错误",null);
                 }else{
                     responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new RatingInfoByuEmail(0,
-                            RatingDaoImpl.LIMIT, total, ratings, tagss, courses, professors));
+                            Link.LIMIT, total, ratings, tagss, courses, professors));
                 }
             }else if(offset!=null&&limit!=null){
                 try{
@@ -146,13 +144,13 @@ public class RatingServiceImpl implements RatingService {
                     long limitLong = Long.parseLong(limit);
 
                     Map<String,Object> map = ratingDao.
-                            getRatingsAndRelatedTagsAndCourseAndProfessorByuEmailWithOffsetAndLimit(uEmail, offsetLong,
-                                    limitLong);
+                            getRatingsAndRelatedTagsAndCourseAndProfessorByuEmailWithOffsetAndLimit(
+                                    uEmail, offsetLong, limitLong);
 
-                    ArrayList<Rating> ratings = (ArrayList<Rating>) map.get("ratings");
-                    ArrayList<ArrayList<Tag>> tagss = (ArrayList<ArrayList<Tag>>) map.get("tagss");
-                    ArrayList<Course> courses = (ArrayList<Course>) map.get("courses");
-                    ArrayList<Professor> professors = (ArrayList<Professor>) map.get("professors");
+                    List<Rating> ratings = (List<Rating>) map.get("ratings");
+                    List<List<Tag>> tagss = (List<List<Tag>>) map.get("tagss");
+                    List<Course> courses = (List<Course>) map.get("courses");
+                    List<Professor> professors = (List<Professor>) map.get("professors");
 
                     long total = ratingDao.getTotalNumber();
 
@@ -194,9 +192,9 @@ public class RatingServiceImpl implements RatingService {
                 return responseBody;
             }
 
-            ArrayList<Tag> tags = new ArrayList<>();
+            List<Tag> tags = new ArrayList<>();
 
-            ArrayList<String> rTags = postRatingRequestBody.getrTags();
+            List<String> rTags = postRatingRequestBody.getrTags();
 
             boolean istIdParamWrong = false;
 
@@ -246,14 +244,14 @@ public class RatingServiceImpl implements RatingService {
                 if(likeOrDislikeRatingByrIdRequestBody.getAction().
                         equals(LikeOrDislikeRatingByrIdRequestBody.LIKE_RATING)){
 
-                    if(!ratingDao.addOneOnRatingBypId(id)){
+                    if(!ratingDao.addOneOnRatingByrId(id)){
                         isDataBaseSucceed = false;
                     }
 
                 }else if (likeOrDislikeRatingByrIdRequestBody.getAction().
                         equals(LikeOrDislikeRatingByrIdRequestBody.DISLIKE_RATING)){
 
-                    if(ratingDao.minusOneOnRatingBypId(id)){
+                    if(!ratingDao.minusOneOnRatingByrId(id)){
                         isDataBaseSucceed = false;
                     }
 

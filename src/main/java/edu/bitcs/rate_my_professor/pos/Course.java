@@ -2,14 +2,14 @@ package edu.bitcs.rate_my_professor.pos;
 
 public class Course {
     private long cId;
-    private String name;
+    private String cName;
 
     public Course() {
     }
 
-    public Course(long cId, String name) {
+    public Course(long cId, String cName) {
         this.cId = cId;
-        this.name = name;
+        this.cName = cName;
     }
 
     public long getcId() {
@@ -20,11 +20,11 @@ public class Course {
         this.cId = cId;
     }
 
-    public String getName() {
-        return name;
+    public String getcName() {
+        return cName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 }

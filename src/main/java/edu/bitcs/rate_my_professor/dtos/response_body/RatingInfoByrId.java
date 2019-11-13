@@ -5,6 +5,7 @@ import edu.bitcs.rate_my_professor.pos.Rating;
 import edu.bitcs.rate_my_professor.pos.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RatingInfoByrId {
     private Object ratingInfoByrId;
@@ -12,16 +13,17 @@ public class RatingInfoByrId {
     public RatingInfoByrId() {
     }
 
-    public RatingInfoByrId(Rating rating, ArrayList<Tag>tags, Course course){
+    public RatingInfoByrId(Rating rating, List<Tag> tags, Course course){
         RatingInfoData ratingInfoData = new RatingInfoData();
 
-        ratingInfoData.setrDate(rating.getrDate());
+        ratingInfoData.setrDate(rating.getrDate().toString());
         ratingInfoData.setrQuality(rating.getrQuality());
         ratingInfoData.setrDifficulty(rating.getrDifficulty());
-        ratingInfoData.setrClass(course.getName());
+        ratingInfoData.setrClass(course.getcName());
         ratingInfoData.setrAttendance(rating.isrAttendance());
         ratingInfoData.setrTakeAgain(rating.isrTakeAgain());
         ratingInfoData.setrGradeReceived(rating.getrGradeReceived());
+        ratingInfoData.setrComment(rating.getrComment());
         ratingInfoData.setrPeopleFoundUseful(rating.getrPeopleFoundUseful());
         ratingInfoData.setrPeopleDidNotFoundUseful(rating.getrPeopleDidNotFindUseful());
 

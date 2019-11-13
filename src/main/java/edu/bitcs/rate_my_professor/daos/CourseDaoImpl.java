@@ -1,26 +1,25 @@
 package edu.bitcs.rate_my_professor.daos;
 
 import edu.bitcs.rate_my_professor.pos.Course;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class CourseDaoImpl implements CourseDao {
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Override
-    public ArrayList<Course> getCoursesBypId(long pId) {
-        ArrayList<Course> courses = new ArrayList<>();
-
-        courses.add(new Course(1,"math"));
-        courses.add(new Course(2,"english"));
-
-        return courses;
+    public List<Course> getCoursesBypId(long pId) {
+        return courseMapper.getCoursesBypId(pId);
     }
 
     @Override
     public Course getCourseBycId(long cId) {
-        return null;
+        return courseMapper.getCourseBycId(cId);
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,7 +22,7 @@ public class TagServiceImpl implements TagService{
     public ResponseBody getTags() {
         ResponseBody responseBody;
 
-        ArrayList <Tag> tags = tagDao.getTags();
+        List<Tag> tags = tagDao.getTags();
 
         if(tags==null){
             responseBody = new ResponseBody(ResponseBody.GET_TAGS_ERROR,"数据库错误",null);
@@ -43,8 +44,8 @@ public class TagServiceImpl implements TagService{
         }else{
             Map<String,Object> map = tagDao.getTagsBypId(id);
 
-            ArrayList<Tag> tags = (ArrayList<Tag>) map.get("tags");
-            ArrayList<Integer> numbers = (ArrayList<Integer>) map.get("numbers");
+            List<Tag> tags = (List<Tag>) map.get("tags");
+            List<Integer> numbers = (List<Integer>) map.get("numbers");
 
             if(tags==null||numbers==null){
                 responseBody = new ResponseBody(ResponseBody.GET_TAGS_ERROR,"数据库错误",null);
@@ -64,12 +65,14 @@ public class TagServiceImpl implements TagService{
 
         Long pId = IdHelper.getIdFromStringId(rProfessor);
 
-        ArrayList <Tag> tags = new ArrayList<>();
-        ArrayList <String> rTags = postProfessorTagsRequestBody.getrTags();
+        List <Tag> tags = new ArrayList<>();
+        List <String> rTags = postProfessorTagsRequestBody.getrTags();
 
-        for(String tName:rTags){
+        for(String tId:rTags){
+            Long id = IdHelper.getIdFromStringId(tId);
+
             Tag tag = new Tag();
-            tag.settName(tName);
+            tag.settId(id);
 
             tags.add(tag);
         }

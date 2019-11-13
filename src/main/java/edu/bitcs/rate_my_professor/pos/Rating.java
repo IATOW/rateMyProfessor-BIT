@@ -3,7 +3,9 @@ package edu.bitcs.rate_my_professor.pos;
 import edu.bitcs.rate_my_professor.dtos.request_body.PostRatingRequestBody;
 import edu.bitcs.rate_my_professor.services.IdHelper;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Rating {
     private long rId;
@@ -16,7 +18,7 @@ public class Rating {
     private boolean rAttendance;
     private String rGradeReceived;
     private String rComment;
-    private String rDate;
+    private Date rDate;
     private int rPeopleFoundUseful;
     private int rPeopleDidNotFindUseful;
 
@@ -41,9 +43,14 @@ public class Rating {
         this.rAttendance = postRatingRequestBody.isrAttendance();
         this.rGradeReceived = postRatingRequestBody.getrGradeReceived();
         this.rComment = postRatingRequestBody.getrComment();
+
+        this.rDate = new Date(Calendar.getInstance().getTime().getTime());
+
+        this.rPeopleFoundUseful = 0;
+        this.rPeopleDidNotFindUseful = 0;
     }
 
-    public Rating(long rId, long rCourse, long rProfessor, String rUser, double rQuality, double rDifficulty, boolean rTakeAgain, boolean rAttendance, String rGradeReceived, String rComment, String rDate, int rPeopleFoundUseful, int rPeopleDidNotFindUseful) {
+    public Rating(long rId, long rCourse, long rProfessor, String rUser, double rQuality, double rDifficulty, boolean rTakeAgain, boolean rAttendance, String rGradeReceived, String rComment, Date rDate, int rPeopleFoundUseful, int rPeopleDidNotFindUseful) {
         this.rId = rId;
         this.rCourse = rCourse;
         this.rProfessor = rProfessor;
@@ -139,11 +146,11 @@ public class Rating {
         this.rComment = rComment;
     }
 
-    public String getrDate() {
+    public Date getrDate() {
         return rDate;
     }
 
-    public void setrDate(String rDate) {
+    public void setrDate(Date rDate) {
         this.rDate = rDate;
     }
 
