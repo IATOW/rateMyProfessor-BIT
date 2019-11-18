@@ -25,7 +25,7 @@ public interface RatingMapper {
     @Select("select count(rId) from Rating")
     long getTotalNumber();
 
-    @Select("call insertRatingAndUpdateProfessor(#{rId,mode = OUT, jdbcType = BIGINT},#{rCourse},#{rProfessor},#{rUser},#{rQuality},#{rDifficulty},#{rTakeAgain},#{rAttendance},#{rGradeReceived},#{rComment},#{rDate},#{rPeopleFoundUseful},#{rPeopleDidNotFindUseful})")
+    @Select("call insertRatingAndUpdateProfessor(#{rId,mode=OUT, jdbcType=BIGINT},#{rCourse},#{rProfessor},#{rUser},#{rQuality},#{rDifficulty},#{rTakeAgain},#{rAttendance},#{rGradeReceived},#{rComment},#{rDate},#{rPeopleFoundUseful},#{rPeopleDidNotFindUseful})")
     @Options(statementType = StatementType.CALLABLE)
     void insertRatingAndUpdateProfessor(Rating rating);
 

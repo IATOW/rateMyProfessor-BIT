@@ -6,6 +6,7 @@ import edu.bitcs.rate_my_professor.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/tags")
 public class TagsController {

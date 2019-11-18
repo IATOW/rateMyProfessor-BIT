@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/ratings")
 public class RatingsController {

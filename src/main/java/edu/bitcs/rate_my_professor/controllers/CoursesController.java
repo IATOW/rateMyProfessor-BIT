@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/courses")
 public class CoursesController {
