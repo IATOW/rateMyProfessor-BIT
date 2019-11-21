@@ -1,7 +1,10 @@
 package edu.bitcs.rate_my_professor.dtos.response_body;
 
+import org.springframework.beans.factory.annotation.Value;
+
+//todo 重构
 public class ResponseBody {
-    public static final int SUCCESS = 0;
+    public static int SUCCESS = 0;
 
     public static final int INVALID_EMAIL = 1000;
     public static final int WRONG_PASSWORD = 1001;

@@ -27,7 +27,7 @@ public class TagServiceImpl implements TagService{
         if(tags==null){
             responseBody = new ResponseBody(ResponseBody.GET_TAGS_ERROR,"数据库错误",null);
         }else{
-            responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new TagInfo(tags));
+            responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",new TagInfo((ArrayList<Tag>) tags));
         }
 
         return responseBody;
