@@ -17,9 +17,6 @@ public class RateMyProfessorApplication {
     private final static int PORT = 9200;
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(RateMyProfessorApplication.class, args);
-
-        RestHighLevelClient restHighLevelClient = applicationContext.getBean(RestHighLevelClient.class);
-
+        SpringApplication.run(RateMyProfessorApplication.class, args);
     }
 }
