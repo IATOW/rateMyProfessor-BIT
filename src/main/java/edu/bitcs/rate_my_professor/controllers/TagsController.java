@@ -6,7 +6,8 @@ import edu.bitcs.rate_my_professor.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+//@CrossOrigin(allowCredentials = "true")
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 @RestController
 @RequestMapping("/tags")
 public class TagsController {

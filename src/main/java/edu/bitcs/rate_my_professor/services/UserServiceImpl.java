@@ -32,7 +32,11 @@ public class UserServiceImpl implements UserService{
         if(userDao.isEmailExisted(uEmail)){
             if(userDao.isPasswordCorrect(uEmail,uPassword)){
                 HttpSession httpSession = httpServletRequest.getSession();
-                httpSession.setAttribute(LOG_IN_REQUEST_BODY,logInRequestBody);
+                try {
+                    httpSession.setAttribute(LOG_IN_REQUEST_BODY,logInRequestBody);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
 
                 responseBody = new ResponseBody(ResponseBody.SUCCESS,"成功",null);
             }else{

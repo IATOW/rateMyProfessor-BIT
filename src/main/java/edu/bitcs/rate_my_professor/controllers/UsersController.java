@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin
+//@CrossOrigin(allowCredentials = "true")
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 @RestController
 @RequestMapping("/users")
 public class UsersController {

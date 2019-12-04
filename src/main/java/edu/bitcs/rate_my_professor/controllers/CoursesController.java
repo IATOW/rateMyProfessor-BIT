@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 
-@CrossOrigin
+//@CrossOrigin
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 @RestController
 @RequestMapping("/courses")
 public class CoursesController {

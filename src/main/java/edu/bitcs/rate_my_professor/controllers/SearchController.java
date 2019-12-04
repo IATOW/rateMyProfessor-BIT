@@ -5,7 +5,8 @@ import edu.bitcs.rate_my_professor.dtos.response_body.ResponseBody;
 import org.springframework.web.bind.annotation.*;
 
 //todo under construction
-@CrossOrigin
+//@CrossOrigin(allowCredentials = "true")
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 @RestController
 @RequestMapping("/search")
 public class SearchController {

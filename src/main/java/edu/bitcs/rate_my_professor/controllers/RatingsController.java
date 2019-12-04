@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/ratings")
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 public class RatingsController {
     @Autowired
     private RatingService ratingService;

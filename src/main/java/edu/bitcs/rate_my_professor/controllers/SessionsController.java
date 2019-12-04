@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@CrossOrigin
+
 @RestController
 @RequestMapping("/sessions")
+@CrossOrigin(allowCredentials = "true", maxAge = 0, origins = {"http://localhost:8081"})
 public class SessionsController {
     @Autowired
     private UserService userService;
